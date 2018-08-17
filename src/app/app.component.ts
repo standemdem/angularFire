@@ -10,12 +10,31 @@ import {Player} from './models/player';
 export class AppComponent implements OnInit {
   title = 'app';
   players: Player[];
+  newPlayer: Player = {number: 0, name: '', goals: 0, id: ''};
 
-  constructor(private db: AngularFirestore) {
+  constructor(private angularFirestore: AngularFirestore) {
   }
 
   ngOnInit() {
-    this.db.collection('items').valueChanges()
+    this.angularFirestore.collection('items').valueChanges()
       .subscribe((players: Player[]) => this.players = players);
+  }
+
+  onSubmit() {
+    console.log(this.newPlayer);
+    const id = this.angularFirestore.createId();
+    this.angularFirestore.doc('items/' + id)
+      .set({...this.newPlayer, id});
+  }
+
+  onEdit(player: Player) {
+    console.log(player);
+    this.angularFirestore.doc('items/' + player.id)
+      .update(player);
+  }
+
+  delete(player) {
+    this.angularFirestore.doc('items/' + player.id)
+      .delete();
   }
 }

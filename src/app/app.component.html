@@ -8,7 +8,41 @@
 <h2>Here are some links to help you start: </h2>
 <ul>
   <li class="text" *ngFor="let player of players">
-    {{player.name}} {{player.number}}
+    <form (ngSubmit)="onEdit(player)">
+      {{ player.id }}
+      <label>
+        name
+        <input type="text" [(ngModel)]="player.name" name="name">
+      </label>
+      <label>
+        number
+        <input type="number" [(ngModel)]="player.number" name="number">
+      </label>
+      <label>
+        goals
+        <input type="number" [(ngModel)]="player.goals" name="goals">
+      </label>
+      <button type="submit">Ok</button>
+      <button type="button" (click)="delete(player)">X</button>
+
+    </form>
   </li>
 </ul>
 
+
+<form #playerForm="ngForm" (ngSubmit)="onSubmit()">
+  <label>
+    name
+    <input type="text" [(ngModel)]="newPlayer.name" name="name">
+  </label>
+  <label>
+    number
+    <input type="number" [(ngModel)]="newPlayer.number" name="number">
+  </label>
+  <label>
+    goals
+    <input type="number" [(ngModel)]="newPlayer.goals" name="goals">
+  </label>
+  <button type="submit">Ok</button>
+
+</form>
