@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "functions:timer:watch": "cd functions/timer/functions/src && npm run watch:timer",
-    "functions:timer:deploy": "cd functions/timer/functions/src && npm run deploy:timer",
+    "functions:timer:deploy": "cd functions/timer/functions/src && npm run deploy:timer"
   },
   "private": true,
   "dependencies": {
