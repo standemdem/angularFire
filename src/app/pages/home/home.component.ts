@@ -1,13 +1,14 @@
 import {Component, OnInit} from '@angular/core';
+import {Player} from '../../models/player';
 import {AngularFirestore} from 'angularfire2/firestore';
-import {Player} from './models/player';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class AppComponent implements OnInit {
+export class HomeComponent implements OnInit {
+
   title = 'app';
   players: Player[];
   newPlayer: Player = {number: 0, name: '', goals: 0, id: ''};
@@ -37,4 +38,5 @@ export class AppComponent implements OnInit {
     this.angularFirestore.doc('items/' + player.id)
       .delete();
   }
+
 }
